@@ -1,0 +1,32 @@
+<?php
+
+namespace Botble\{Plugin}\Repositories\Caches;
+
+use Botble\Support\Repositories\Caches\CacheAbstractDecorator;
+use Botble\Support\Services\Cache\CacheInterface;
+use Botble\{Plugin}\Repositories\Interfaces\{Plugin}Interface;
+
+class {Plugin}CacheDecorator extends CacheAbstractDecorator implements {Plugin}Interface
+{
+    /**
+     * @var {Plugin}Interface
+     */
+    protected $repository;
+
+    /**
+     * @var CacheInterface
+     */
+    protected $cache;
+
+    /**
+     * {Plugin}CacheDecorator constructor.
+     * @param {Plugin}Interface $repository
+     * @param CacheInterface $cache
+     * @author Sang Nguyen
+     */
+    public function __construct({Plugin}Interface $repository, CacheInterface $cache)
+    {
+        $this->repository = $repository;
+        $this->cache = $cache;
+    }
+}

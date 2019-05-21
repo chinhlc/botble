@@ -1,0 +1,9 @@
+{
+    "name": "Api",
+    "namespace": "Botble\\Api\\",
+    "provider": "Botble\\Api\\Providers\\ApiServiceProvider",
+    "author": "Sang Nguyen",
+    "url": "http://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin api"
+}

@@ -1,0 +1,28 @@
+<?php
+
+namespace Botble\{Plugin}\Models;
+
+use Eloquent;
+
+/**
+ * Botble\{Plugin}\Models\{Plugin}
+ *
+ * @mixin \Eloquent
+ */
+class {Plugin} extends Eloquent
+{
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = '{plugins}';
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'status',
+    ];
+}

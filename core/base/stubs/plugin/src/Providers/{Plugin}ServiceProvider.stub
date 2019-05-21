@@ -1,0 +1,68 @@
+<?php
+
+namespace Botble\{Plugin}\Providers;
+
+use Botble\{Plugin}\Models\{Plugin};
+use Illuminate\Support\ServiceProvider;
+use Botble\{Plugin}\Repositories\Caches\{Plugin}CacheDecorator;
+use Botble\{Plugin}\Repositories\Eloquent\{Plugin}Repository;
+use Botble\{Plugin}\Repositories\Interfaces\{Plugin}Interface;
+use Botble\Support\Services\Cache\Cache;
+use Botble\Base\Supports\Helper;
+use Botble\Base\Events\SessionStarted;
+use Event;
+use Botble\Base\Traits\LoadAndPublishDataTrait;
+
+class {Plugin}ServiceProvider extends ServiceProvider
+{
+    use LoadAndPublishDataTrait;
+
+    /**
+     * @var \Illuminate\Foundation\Application
+     */
+    protected $app;
+
+    /**
+     * @author Sang Nguyen
+     */
+    public function register()
+    {
+        if (setting('enable_cache', false)) {
+            $this->app->singleton({Plugin}Interface::class, function () {
+                return new {Plugin}CacheDecorator(new {Plugin}Repository(new {Plugin}()), new Cache($this->app['cache'], {Plugin}Repository::class));
+            });
+        } else {
+            $this->app->singleton({Plugin}Interface::class, function () {
+                return new {Plugin}Repository(new {Plugin}());
+            });
+        }
+
+        Helper::autoload(__DIR__ . '/../../helpers');
+    }
+
+    /**
+     * @author Sang Nguyen
+     */
+    public function boot()
+    {
+        $this->setIsInConsole($this->app->runningInConsole())
+            ->setNamespace('plugins/{-plugin}')
+            ->loadAndPublishConfigurations(['permissions'])
+            ->loadMigrations()
+            ->loadAndPublishViews()
+            ->loadAndPublishTranslations()
+            ->loadRoutes();
+
+        Event::listen(SessionStarted::class, function () {
+            dashboard_menu()->registerItem([
+                'id' => 'cms-plugins-{plugin}',
+                'priority' => 5,
+                'parent_id' => null,
+                'name' => trans('plugins.{-plugin}::{-plugin}.name'),
+                'icon' => 'fa fa-list',
+                'url' => route('{plugin}.list'),
+                'permissions' => ['{plugin}.list'],
+            ]);
+        });
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Note",
+    "namespace": "Botble\\Note\\",
+    "provider": "Botble\\Note\\Providers\\NoteServiceProvider",
+    "author": "Sang Nguyen",
+    "url": "http://sangnguyen.info",
+    "version": "2.6",
+    "description": "Allow to add note when editing page, post..."
+}
