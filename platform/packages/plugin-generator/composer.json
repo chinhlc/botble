@@ -1,0 +1,17 @@
+{
+  "name": "botble/plugin-generator",
+  "description": "Plugin generator",
+  "type": "package",
+  "autoload": {
+    "psr-4": {
+      "Botble\\PluginGenerator\\": "src"
+    }
+  },
+  "extra":{
+    "laravel":{
+      "providers":[
+        "Botble\\PluginGenerator\\Providers\\PluginGeneratorServiceProvider"
+      ]
+    }
+  }
+}
