@@ -1,0 +1,10 @@
+<?php
+
+namespace Botble\{Module}\Repositories\Eloquent;
+
+use Botble\Support\Repositories\Eloquent\RepositoriesAbstract;
+use Botble\{Module}\Repositories\Interfaces\{Module}Interface;
+
+class {Module}Repository extends RepositoriesAbstract implements {Module}Interface
+{
+}

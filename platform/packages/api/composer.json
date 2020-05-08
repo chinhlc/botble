@@ -1,0 +1,22 @@
+{
+    "name": "botble/api",
+    "description": "API package for Botble CMS application",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Botble\\Api\\": "src"
+        }
+    },
+    "require": {
+        "laravel/passport": "^8.0",
+        "mpociot/laravel-apidoc-generator": "^4.0",
+        "barryvdh/laravel-cors": "^0.11.3"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Botble\\Api\\Providers\\ApiServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<?php
+
+Route::group(['namespace' => 'Botble\{Module}\Http\Controllers', 'middleware' => 'web'], function () {
+
+    Route::group(['prefix' => config('core.base.general.admin_dir'), 'middleware' => 'auth'], function () {
+
+        Route::group(['prefix' => '{-modules}', 'as' => '{-module}.'], function () {
+            Route::resource('', '{Module}Controller')->parameters(['' => '{-module}']);
+            Route::delete('items/destroy', [
+                'as'         => 'deletes',
+                'uses'       => '{Module}Controller@deletes',
+                'permission' => '{-module}.destroy',
+            ]);
+        });
+    });
+
+});

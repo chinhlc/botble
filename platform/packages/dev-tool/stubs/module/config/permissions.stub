@@ -1,0 +1,23 @@
+<?php
+
+return [
+    [
+        'name' => '{Modules}',
+        'flag' => '{-module}.index',
+    ],
+    [
+        'name'        => 'Create',
+        'flag'        => '{-module}.create',
+        'parent_flag' => '{-module}.index',
+    ],
+    [
+        'name'        => 'Edit',
+        'flag'        => '{-module}.edit',
+        'parent_flag' => '{-module}.index',
+    ],
+    [
+        'name'        => 'Delete',
+        'flag'        => '{-module}.destroy',
+        'parent_flag' => '{-module}.index',
+    ],
+];

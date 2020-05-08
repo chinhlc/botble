@@ -1,0 +1,7 @@
+<?php
+
+return [
+    'name'   => '{Modules}',
+    'create' => 'New {-module}',
+    'edit'   => 'Edit {-module}',
+];
